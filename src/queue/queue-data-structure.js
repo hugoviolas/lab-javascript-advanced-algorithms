@@ -5,15 +5,38 @@ class Queue {
   }
 
   canEnqueue() {
-    // ... your code goes here
+    if (this.queueControl.length < this.MAX_SIZE) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isEmpty() {
-    // ... your code goes here
+    if (this.queueControl.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   enqueue(item) {
-    // ... your code goes here
+    if (this.canEnqueue() === true) {
+      if (this.isEmpty() === false) {
+        for (let i = this.queueControl.length; i > 0; i-- * 2) {
+          this.queueControl[i] = this.queueControl[i - 1];
+        }
+        this.queueControl[0] = item;
+        console.log(this.queueControl);
+        return this.queueControl.reverse();
+      } else {
+        this.queueControl[this.queueControl.length - this.queueControl.length] =
+          item;
+        return this.queueControl;
+      }
+    } else {
+      throw new Error("QUEUE_OVERFLOW");
+    }
   }
 
   dequeue() {
@@ -21,9 +44,9 @@ class Queue {
   }
 
   display() {
-    // ... your code goes here
-  }  
+    return this.queueControl;
+  }
 }
 
 // This is required to enable the automated tests, please ignore it.
-if (typeof module !== 'undefined') module.exports = Queue;
+if (typeof module !== "undefined") module.exports = Queue;

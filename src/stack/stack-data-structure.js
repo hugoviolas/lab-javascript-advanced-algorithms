@@ -13,37 +13,36 @@ class Stack {
   }
 
   isEmpty() {
-    if (this.stackControl.length === 0) return true;
-    return false;
+    if (this.stackControl.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   push(item) {
-    if (!this.canPush) {
-      throw new Error("STACK_OVERFLOW");
-    }
-    try {
+    if (this.canPush()) {
       this.stackControl[this.stackControl.length] = item;
       return this.stackControl;
-    } catch (error) {
-      return error;
+    } else {
+      throw new Error("STACK_OVERFLOW");
     }
   }
 
   pop() {
     let returnedElement;
-    if (this.isEmpty) {
+    if (!this.isEmpty()) {
       returnedElement = this.stackControl.slice(
         this.stackControl.length - 1,
         this.stackControl.length
       )[0];
+      return returnedElement;
     } else {
       throw new Error("STACK_UNDERFLOW");
     }
-    return returnedElement;
   }
 
   display() {
-    console.log(this.stackControl);
     return this.stackControl;
   }
 }
