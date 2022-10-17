@@ -40,7 +40,13 @@ class Queue {
   }
 
   dequeue() {
-    // ... your code goes here
+    let returnedElement;
+    if (this.isEmpty() === false) {
+      returnedElement = this.queueControl.slice(0, 1)[0];
+      return returnedElement;
+    } else {
+      throw new Error("QUEUE_UNDERFLOW");
+    }
   }
 
   display() {
